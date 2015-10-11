@@ -146,7 +146,7 @@ unsigned short leerMuestreo( unsigned short * pista, int bitpos, int bitsPorMues
 				//Este for nos permite manejar las casillas del arreglo donde vamos a meter los bits del muestreo
 				for (j = 1; j < bitsPorMuestreo; j++)
 				{
-					respuesta[j] = m;
+					respuesta[j] = pista[m];
 				}
 			}
 		}
