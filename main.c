@@ -80,7 +80,7 @@ int main (int argc, char* argv[])
 	desempaquetar( &pistaSalida, bitsPorMuestreo );
 	escribirWAVE( &Header, &pistaSalida, argv[3] );
 
-	printf ("Concluyó exitosamente.\n");
+	printf ("ConcluyÃ³ exitosamente.\n");
 	system("pause");
 	return 0;
 }
@@ -94,14 +94,14 @@ int main (int argc, char* argv[])
 //TODO: DESARROLLAR COMPLETAMENTE ESTA FUNCION
 void escribirMuestreo ( unsigned short * pista, int bitpos, unsigned short muestreo, int bitsPorMuestreo )
 {
-
+// COMENTARIO DE PRUEBA
 }
 
 /*
 *  Funcion que lee bitsPorMuestreo bits de la pista a partir de la posicion indicada por bitPos
 *  pista: apunta a un vector de short que contiene los muestreos de una pista
 *  bitpos: posicion a partir de la cual se desea leer el muestreo
-*  Retorna el valor del muestreo que se encuentra en la posición bitPos
+*  Retorna el valor del muestreo que se encuentra en la posiciÃ³n bitPos
 */
 //TODO: DESARROLLAR COMPLETAMENTE ESTA FUNCION
 unsigned short leerMuestreo( unsigned short * pista, int bitpos, int bitsPorMuestreo )
@@ -123,7 +123,7 @@ void unirArchivosWAVE( unsigned short *parte1, unsigned short *parte2, unsigned 
 }
 
 /*
-* Función que detecta el numero de bits por muestreo
+* FunciÃ³n que detecta el numero de bits por muestreo
 * NO MODIFICAR
 */
 int detectarBitsPorMuestreo( struct WaveData * voice ){
@@ -180,7 +180,7 @@ void empaquetar ( struct WaveData *pista, int bitsPorMuestreo ){
 *  Funcion que escribe 1 bit en la pista en la posicion indicada por bitPos
 *  pista: apunta a un vector de short que contiene los muestreos de una pista
 *  bitpos: posicion del bit de la pista que se desea modificar
-*  bit: vale 1 o 0, indicando cuál es el valor que se desea asignar al bit
+*  bit: vale 1 o 0, indicando cuÃ¡l es el valor que se desea asignar al bit
 */
 void escribir1bit( unsigned short * pista, int bitpos, unsigned short bit ){
 	escribirMuestreo ( pista, bitpos, bit, 1 );
@@ -247,7 +247,7 @@ void cargarWAVE ( struct HeaderType * header, struct WaveData * pista, char * Fi
     exit( 0 );
   }
 
-  //Check resolución bits
+  //Check resoluciÃ³n bits
   if ( header->BitRes != 16 ){
     printf( "El archivo no es de 16 bits (%s)\n", FileName );
     exit( 0 );
@@ -282,7 +282,7 @@ int escribirWAVE ( struct HeaderType * header, struct WaveData * pista, char * F
 }
 
 /*
-* Función que corrige el header: cambio de monofónico a estereofónico
+* FunciÃ³n que corrige el header: cambio de monofÃ³nico a estereofÃ³nico
 * NO MODIFICAR
 */
 void corregirHeader ( struct HeaderType * header ){
