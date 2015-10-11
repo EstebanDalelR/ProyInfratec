@@ -130,24 +130,22 @@ unsigned short leerMuestreo( unsigned short * pista, int bitpos, int bitsPorMues
 	unsigned short respuesta[15] = 0;
 	int numMuestreos = sizeof(pista);
 	int numTotalBits = numMuestreos*bitsPorMuestreo;
-	int m;
-	int i;
-	int j;
+	int m=0;
+	int i=0;
+	int n=0;
 	
 	//Recorremos el numero total de bits 
 	for (int i = 0; i < numTotalBits; i++)
 	{
-	    //¿Llegó a la posicion desde donde se quiere empezar a leer el muestreo?
+	    //Este if nos permite determinar si se llegó a  la posición desde donde se quiere leer el muestreo
 		if (i == bitpos)
 		{
 			//Este for nos permite manejar la posicion de los bits desde bitpos hasta completar un muestreo
 			for (m = bitpos; m < bitsPorMuestreo; m++)
 			{
-				respuesta[i] = pista[m];
+				respuesta[n] = pista[m];
+				n++;
 			}
-			//j no es una variable válida
-			//la cambié por i
-			
 		}
 	}
 
