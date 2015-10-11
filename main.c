@@ -95,7 +95,7 @@ int main (int argc, char* argv[])
 //TODO: DESARROLLAR COMPLETAMENTE ESTA FUNCION
 void escribirMuestreo ( unsigned short * pista, int bitpos, unsigned short muestreo, int bitsPorMuestreo )
 {
-// COMENTARIO DE PRUEBA
+
 }
 
 /*
@@ -107,6 +107,9 @@ void escribirMuestreo ( unsigned short * pista, int bitpos, unsigned short muest
 //TODO: DESARROLLAR COMPLETAMENTE ESTA FUNCION
 unsigned short leerMuestreo( unsigned short * pista, int bitpos, int bitsPorMuestreo )
 {
+	unsigned short respuesta=0;
+	
+	return respuesta;
 
 } 
 
