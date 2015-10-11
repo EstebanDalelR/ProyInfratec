@@ -126,8 +126,7 @@ void escribirMuestreo ( unsigned short * pista, int bitpos, unsigned short muest
 unsigned short leerMuestreo( unsigned short * pista, int bitpos, int bitsPorMuestreo )
 {
 	unsigned short respuesta[15] = 0;
-	int numMuestreos = sizeof(pista);
-	int numTotalBits = numMuestreos*bitsPorMuestreo;
+	int numTotalBits = numSamples*bitsPorMuestreo;
 	int m=0;
 	int i=0;
 	int n=0;
