@@ -100,7 +100,7 @@ int main (int argc, char* argv[])
 //TODO: DESARROLLAR COMPLETAMENTE ESTA FUNCION
 void escribirMuestreo ( unsigned short * pista, int bitpos, unsigned short muestreo, int bitsPorMuestreo )
 {
-	//se declaran las variables a usar
+	//Se declaran las variables a usar
 	int i;
 	int j = 0;
 	//toma unos bits en muestreo, deben ser bitsPorMuestreo bits
@@ -165,6 +165,7 @@ unsigned short leerMuestreo( unsigned short * pista, int bitpos, int bitsPorMues
 //TODO: DESARROLLAR COMPLETAMENTE ESTA FUNCION
 void unirArchivosWAVE( unsigned short *parte1, unsigned short *parte2, unsigned short *salida, int bitsPorMuestreo )
 {
+	//Se declaran las variables que se van a usar
 	//int numMuestreosParte1 = sizeof(*parte1);
 	//int numMuestreosParte2 = sizeof(*parte2);
 	//int numeroTotalBitsParte1 = numMuestreosParte1*bitsPorMuestreo;
