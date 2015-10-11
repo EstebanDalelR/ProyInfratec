@@ -100,12 +100,12 @@ int main (int argc, char* argv[])
 //TODO: DESARROLLAR COMPLETAMENTE ESTA FUNCION
 void escribirMuestreo ( unsigned short * pista, int bitpos, unsigned short muestreo, int bitsPorMuestreo )
 {
-	//toma unos bits en muestreo, deben ser bitsPorMuestro bits
-	//va hasta bitpos de pista
-	//agrega esos bits
 	//se declaran las variables a usar
 	int i;
-	int j=0;
+	int j = 0;
+	//toma unos bits en muestreo, deben ser bitsPorMuestreo bits
+	//va hasta bitpos de pista, agrega esos bits
+	
 	//se itera sobre los bits que le siguen a bitpos bitsPorMuestreo veces
 	for ( i = bitpos; i < bitsPorMuestreo; i++)
 	{	
@@ -113,6 +113,7 @@ void escribirMuestreo ( unsigned short * pista, int bitpos, unsigned short muest
 		pista[i] = muestreo[j];
 		//se avanza a la siguente posición de muestreo
 		j++;
+		//repite el proceso
 	}	
 }
 
@@ -125,6 +126,7 @@ void escribirMuestreo ( unsigned short * pista, int bitpos, unsigned short muest
 //TODO: DESARROLLAR COMPLETAMENTE ESTA FUNCION
 unsigned short leerMuestreo( unsigned short * pista, int bitpos, int bitsPorMuestreo )
 {
+	//se declaran las variables a usar
 	unsigned short respuesta[15] = 0;
 	int numMuestreos = sizeof(pista);
 	int numTotalBits = numMuestreos*bitsPorMuestreo;
