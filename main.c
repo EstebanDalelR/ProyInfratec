@@ -4,8 +4,13 @@
 #include "string.h"
 
 #define BIT_POR_BYTE   8
-//Esteban Dalel R
-//201227078
+
+//---------------------------------------------------------------------------------------------------------------
+// PROYECTO 1 INFRATEC 2015-2
+//---------------------------------------------------------------------------------------------------------------
+//- Esteban Dalel R - CODIGO: 201227078 - CORREO: e.dalel10@uniandes.edu.co
+//- Julio A. Poveda G. - CODIGO: 201424179 - CORREO: ja.poveda10@uniandes.edu.co
+
 //En esta estructura se manejaran las pistas de sonido
 struct WaveData {
   unsigned int SoundLength;       //Numero de bytes ocupados por la pista
@@ -110,6 +115,14 @@ unsigned short leerMuestreo( unsigned short * pista, int bitpos, int bitsPorMues
 	short respuesta = 0;
 	int numMuestreos = sizeof(pista);
 	int numTotalBits = numMuestreos*bitsPorMuestreo;
+
+	for (int i = 0; i < numTotalBits; i++)
+	{
+		if (i == bitpos)
+		{
+			//Por desarrollar
+		}
+	}
 
 	return respuesta;
 
