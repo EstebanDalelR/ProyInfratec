@@ -104,7 +104,8 @@ void escribirMuestreo ( unsigned short * pista, int bitpos, unsigned short muest
 	//va hasta bitpos de *pista
 	//agrega esos bits
 	//algo como:
-	//pista [bitpos]=muestreo
+	pista[bitpos] = muestreo;
+	
 }
 
 /*
