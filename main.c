@@ -128,11 +128,12 @@ unsigned short leerMuestreo( unsigned short * pista, int bitpos, int bitsPorMues
 {
 	//se declaran las variables a usar
 	unsigned short respuesta[15] = 0;
-	int numMuestreos = sizeof(pista);
-	int numTotalBits = numMuestreos*bitsPorMuestreo;
-	int m;
-	int i;
-	int j;
+
+	int numTotalBits = numSamples*bitsPorMuestreo;
+	int m=0;
+	int i=0;
+	int n=0;
+>>>>>>> 4a285f9894210af2260e127fa2e7d9b4540f05ad
 	
 	//Recorremos el numero total de bits 
 	for (int i = 0; i < numTotalBits; i++)
@@ -164,6 +165,11 @@ unsigned short leerMuestreo( unsigned short * pista, int bitpos, int bitsPorMues
 //TODO: DESARROLLAR COMPLETAMENTE ESTA FUNCION
 void unirArchivosWAVE( unsigned short *parte1, unsigned short *parte2, unsigned short *salida, int bitsPorMuestreo )
 {
+	int numMuestreosParte1 = sizeof(*parte1);
+	int numMuestreosParte2 = sizeof(*parte2);
+	int numeroTotalBitsParte1 = numMuestreosParte1*bitsPorMuestreo;
+	int numeroTotalBitsParte2 = numMuestreosParte2*bitsPorMuestreo;
+	
 	//el vector de salida debe tener el largo de entrada1+entrada2
 	//se van agregando bitsPorMuestreo bits de cada archivo de entrada hasta llegar al fin
 	//algo como:
