@@ -4,7 +4,8 @@
 #include "string.h"
 
 #define BIT_POR_BYTE   8
-
+//Esteban Dalel R
+//201227078
 //En esta estructura se manejaran las pistas de sonido
 struct WaveData {
   unsigned int SoundLength;       //Numero de bytes ocupados por la pista
