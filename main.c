@@ -110,7 +110,7 @@ void escribirMuestreo ( unsigned short * pista, int bitpos, unsigned short muest
 	for ( i = bitpos; i < bitsPorMuestreo; i++)
 	{	
 		//se reeemplaza el bit actual por el bit que llega en muestreo
-		pista[i] = muestreo[j];
+		* pista[i] = muestreo[j];
 		//se avanza a la siguente posición de muestreo
 		j++;
 		//repite el proceso
@@ -130,22 +130,24 @@ unsigned short leerMuestreo( unsigned short * pista, int bitpos, int bitsPorMues
 	unsigned short respuesta[15] = 0;
 	int numMuestreos = sizeof(pista);
 	int numTotalBits = numMuestreos*bitsPorMuestreo;
-	int m=0;
-	int i=0;
-	int n=0;
+	int m;
+	int i;
+	int j;
 	
 	//Recorremos el numero total de bits 
 	for (int i = 0; i < numTotalBits; i++)
 	{
-	    //Este if nos permite determinar si se llegó a  la posición desde donde se quiere leer el muestreo
+	    //¿Llegó a la posicion desde donde se quiere empezar a leer el muestreo?
 		if (i == bitpos)
 		{
 			//Este for nos permite manejar la posicion de los bits desde bitpos hasta completar un muestreo
 			for (m = bitpos; m < bitsPorMuestreo; m++)
 			{
-				respuesta[n] = pista[m];
-				n++;
+				respuesta[i] = pista[m];
 			}
+			//j no es una variable válida
+			//la cambié por i
+			
 		}
 	}
 
