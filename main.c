@@ -116,22 +116,31 @@ void escribirMuestreo ( unsigned short * pista, int bitpos, unsigned short muest
 //TODO: DESARROLLAR COMPLETAMENTE ESTA FUNCION
 unsigned short leerMuestreo( unsigned short * pista, int bitpos, int bitsPorMuestreo )
 {
-	//debe crear un vector, y agregar los bits que está leyendo en bitpos hasta bitPos+bitsPorMuestreo
-	//responde ese vector
-	short respuesta = 0;
+	unsigned short respuesta[15] = 0;
 	int numMuestreos = sizeof(pista);
 	int numTotalBits = numMuestreos*bitsPorMuestreo;
 
+	//Recorremos el numero total de bits 
 	for (int i = 0; i < numTotalBits; i++)
 	{
 		if (i == bitpos)
 		{
-			//Por desarrollar
+			//Se llegó a la posicion desde donde se quiere empezar a leer el muestreo
+			respuesta[0] = i;
+
+			//Este for nos permite manejar las casillas del arreglo donde vamos a meter los bits del muestreo
+			for (int j = 1; j < bitsPorMuestreo; j++)
+			{
+				//Este for nos permite manejar la posicion de los bits desde bitpos hasta completar un muestreo.
+				for (int m = bitpos; m < bitsPorMuestreo; m++)
+				{
+					respuesta[j] = m;
+				}
+			}
 		}
 	}
 
 	return respuesta;
-
 } 
 
 /*
