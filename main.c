@@ -175,12 +175,7 @@ void unirArchivosWAVE( unsigned short *parte1, unsigned short *parte2, unsigned 
 //el vector de salida debe tener el largo de entrada1+entrada2
 //se van agregando bitsPorMuestreo bits de cada archivo de entrada hasta llegar al fin
 //algo como:
-  for (sizeof(salida)) 
-  {
-    escribirMuestreo(parte1)
-    escribirMuestreo(parte2)
- //avanza la posición: +2*bitsPormuestreo
-  }
+ 
 
 for (i = 0; i < sizeof(*salida); i++)
 {
