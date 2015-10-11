@@ -169,6 +169,19 @@ void unirArchivosWAVE( unsigned short *parte1, unsigned short *parte2, unsigned 
 	int numMuestreosParte2 = sizeof(*parte2);
 	int numeroTotalBitsParte1 = numMuestreosParte1*bitsPorMuestreo;
 	int numeroTotalBitsParte2 = numMuestreosParte2*bitsPorMuestreo;
+	int numTotalBits = numeroTotalBitsParte1+numeroTotalBitsParte2;
+	int i = 0;
+	int m = 0;
+	int numeroDeCasillas = 0;
+
+	while (numeroDeCasillas!=numTotalBits)
+	{
+		salida[i] = parte1[i];
+		i++;
+		salida[i] = parte2[m];
+		m++;
+		numeroDeCasillas += 2;
+	}
 	
 	//el vector de salida debe tener el largo de entrada1+entrada2
 	//se van agregando bitsPorMuestreo bits de cada archivo de entrada hasta llegar al fin
