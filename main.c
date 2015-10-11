@@ -100,6 +100,9 @@ int main (int argc, char* argv[])
 //TODO: DESARROLLAR COMPLETAMENTE ESTA FUNCION
 void escribirMuestreo ( unsigned short * pista, int bitpos, unsigned short muestreo, int bitsPorMuestreo )
 {
+	//toma unos bits en muestreo, deben ser bitsPorMuestro bts
+	//va hasta bitpos de *pista
+	//agrega esos bits
 
 }
 
@@ -112,6 +115,8 @@ void escribirMuestreo ( unsigned short * pista, int bitpos, unsigned short muest
 //TODO: DESARROLLAR COMPLETAMENTE ESTA FUNCION
 unsigned short leerMuestreo( unsigned short * pista, int bitpos, int bitsPorMuestreo )
 {
+	//debe crear un vector, y agregar los bits que está leyendo en bitpos hasta bitPos+bitsPorMuestreo
+	//responde ese vector
 	short respuesta = 0;
 	int numMuestreos = sizeof(pista);
 	int numTotalBits = numMuestreos*bitsPorMuestreo;
@@ -138,6 +143,8 @@ unsigned short leerMuestreo( unsigned short * pista, int bitpos, int bitsPorMues
 //TODO: DESARROLLAR COMPLETAMENTE ESTA FUNCION
 void unirArchivosWAVE( unsigned short *parte1, unsigned short *parte2, unsigned short *salida, int bitsPorMuestreo )
 {
+	//el vector de salida debe tener el largo de entrada1+entrada2
+	//se van agregando bitsPorMuestreo bits de cada archivo de entrada hasta llegar al fin
 
 }
 
