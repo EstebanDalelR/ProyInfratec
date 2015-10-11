@@ -128,6 +128,9 @@ unsigned short leerMuestreo( unsigned short * pista, int bitpos, int bitsPorMues
 {
 	//se declaran las variables a usar
 	unsigned short respuesta[15] = 0;
+	//IMPORTANTE 
+	// PISTA APUNTA AL VECTOR
+	//LOS CAMBIOS SE DEBEN HACER EN EL VECTOR EN MEMORIA
 
 	int numTotalBits = numSamples*bitsPorMuestreo;
 	int m=0;
