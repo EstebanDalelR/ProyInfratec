@@ -128,30 +128,27 @@ unsigned short leerMuestreo( unsigned short * pista, int bitpos, int bitsPorMues
 {
 	//se declaran las variables a usar
 	unsigned short respuesta[15] = 0;
+	
 	//IMPORTANTE 
 	// PISTA APUNTA AL VECTOR
 	//LOS CAMBIOS SE DEBEN HACER EN EL VECTOR EN MEMORIA
-
 	int numTotalBits = numSamples*bitsPorMuestreo;
 	int m=0;
 	int i=0;
 	int n=0;
->>>>>>> 4a285f9894210af2260e127fa2e7d9b4540f05ad
-	
+
 	//Recorremos el numero total de bits 
 	for (int i = 0; i < numTotalBits; i++)
 	{
-	    //¿Llegó a la posicion desde donde se quiere empezar a leer el muestreo?
+	    //Este if nos permite determinar si se llegó a la posición desde donde se desea leer el muestreo
 		if (i == bitpos)
 		{
 			//Este for nos permite manejar la posicion de los bits desde bitpos hasta completar un muestreo
 			for (m = bitpos; m < bitsPorMuestreo; m++)
 			{
 				respuesta[i] = pista[m];
+				n++;
 			}
-			//j no es una variable válida
-			//la cambié por i
-			
 		}
 	}
 
