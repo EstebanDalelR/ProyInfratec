@@ -8,8 +8,8 @@
 //---------------------------------------------------------------------------------------------------------------
 // PROYECTO 1 INFRATEC 2015-2
 //---------------------------------------------------------------------------------------------------------------
-//- Esteban Dalel R - CODIGO: 201227078 - CORREO: e.dalel10@uniandes.edu.co
-//- Julio A. Poveda G. - CODIGO: 201424179 - CORREO: ja.poveda10@uniandes.edu.co
+//- Esteban Dalel R - CÓDIGO: 201227078 - CORREO: e.dalel10@uniandes.edu.co
+//- Julio A. Poveda G. - CÓDIGO: 201424179 - CORREO: ja.poveda10@uniandes.edu.co
 
 //En esta estructura se manejaran las pistas de sonido
 struct WaveData {
@@ -103,9 +103,16 @@ void escribirMuestreo ( unsigned short * pista, int bitpos, unsigned short muest
 	//toma unos bits en muestreo, deben ser bitsPorMuestro bits
 	//va hasta bitpos de *pista
 	//agrega esos bits
-	//algo como:
-	pista[bitpos] = muestreo;
-	
+	int i;
+	int j;
+	for ( i = bitpos; i < bitsPorMuestreo; i++)
+	{
+		for (j= 0; j < length; j++)
+		{
+		pista[i] = muestreo[j];
+		}
+		
+	}	
 }
 
 /*
@@ -131,8 +138,10 @@ unsigned short leerMuestreo( unsigned short * pista, int bitpos, int bitsPorMues
 			//Se llegó a la posicion desde donde se quiere empezar a leer el muestreo
 			respuesta[0] = i;
 
-			//Este for nos permite manejar la posicion de los bits desde bitpos hasta completar un muestreo.
-			for (m = bitpos; m < bitsPorMuestreo; m++)
+
+			//Este for nos permite manejar la posicion de los bits desde bitpos hasta completar un muestreo
+			for (int m = bitpos; m < bitsPorMuestreo; m++)
+
 			{
 				//Este for nos permite manejar las casillas del arreglo donde vamos a meter los bits del muestreo
 				for (j = 1; j < bitsPorMuestreo; j++)
