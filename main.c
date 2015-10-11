@@ -165,39 +165,34 @@ unsigned short leerMuestreo( unsigned short * pista, int bitpos, int bitsPorMues
 //TODO: DESARROLLAR COMPLETAMENTE ESTA FUNCION
 void unirArchivosWAVE( unsigned short *parte1, unsigned short *parte2, unsigned short *salida, int bitsPorMuestreo )
 {
-	//Se declaran las variables que se van a usar
-	//int numMuestreosParte1 = sizeof(*parte1);
-	//int numMuestreosParte2 = sizeof(*parte2);
-	//int numeroTotalBitsParte1 = numMuestreosParte1*bitsPorMuestreo;
-	//int numeroTotalBitsParte2 = numMuestreosParte2*bitsPorMuestreo;
-	//int numTotalBits = numeroTotalBitsParte1+numeroTotalBitsParte2;
-	//int i = 0;
-	//int m = 0;
-	//int numeroDeCasillas = 0;
+  //se declaran las variables a usar
+  int numMuestreosParte1 = sizeof(*parte1);
+  int numMuestreosParte2 = sizeof(*parte2);
+  int numeroTotalBitsParte1 = numMuestreosParte1*bitsPorMuestreo;
+  int numeroTotalBitsParte2 = numMuestreosParte2*bitsPorMuestreo;
+  int i;
+  //lleva la posición en el vector de salida
+  int m = 0;
+  //leva la bitpos en cada parte
+  int n = 0;
 
-	//while (numeroDeCasillas!=numTotalBits)
-	//{
-	//	salida[i] = parte1[i];
-		//i++;
-		//salida[i] = parte2[m];
-		//m++;
-		//numeroDeCasillas += 2;
-	//}
-	
-	//el vector de salida debe tener el largo de entrada1+entrada2
-	//se van agregando bitsPorMuestreo bits de cada archivo de entrada hasta llegar al fin
-	//algo como:
-	//for (sizeof(salida)) 
-	//{
-	//escribirMuestreo(parte1)
-	//escribirMuestreo(parte2)
-	//avanza la posición: +2*bitsPormuestreo
-	//}
-	//int i;
-	//for ( i = 0; i < length; i++)
-	//{
-		//Por desarrollar
-	//}
+//el vector de salida debe tener el largo de entrada1+entrada2
+//se van agregando bitsPorMuestreo bits de cada archivo de entrada hasta llegar al fin
+//algo como:
+////for (sizeof(salida)) 
+////{
+////escribirMuestreo(parte1)
+////escribirMuestreo(parte2)
+////avanza la posición: +2*bitsPormuestreo
+////}
+//
+//for (i = 0; i < sizeof(*salida); i++)
+//{
+//	escribirMuestreo(*salida, m, leerMuestreo(parte1, n, bitsPorMuestreo), bitsPorMuestreo);
+//	m += bitsPorMuestreo;
+//	escribirMuestreo(*salida, m, leerMuestreo(parte2, n, bitsPorMuestreo), bitsPorMuestreo);
+//	n += 2 * bitsPorMuestreo;
+//}
 }
 
 /*
