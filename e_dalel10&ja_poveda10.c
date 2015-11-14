@@ -6,7 +6,7 @@
 #define BIT_POR_BYTE   8
 
 //---------------------------------------------------------------------------------------------------------------
-// PROYECTO 1 INFRATEC 2015-2
+// PROYECTO 2 INFRATEC 2015-2
 //---------------------------------------------------------------------------------------------------------------
 //- Esteban Dalel R - CÓDIGO: 201227078 - CORREO: e.dalel10@uniandes.edu.co
 //- Julio A. Poveda G. - CÓDIGO: 201424179 - CORREO: ja.poveda10@uniandes.edu.co
@@ -365,3 +365,10 @@ void corregirHeader ( struct HeaderType * header ){
 	header->subChunckSize = 2*header->subChunckSize;
 }
 
+//A partir de este punto se escribe en lenguaje ensamblador
+
+asm{
+leerDatos
+
+escribirDatos
+}
