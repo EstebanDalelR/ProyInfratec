@@ -106,7 +106,22 @@ void escribirMuestreo ( unsigned short * pista, int bitpos, unsigned short muest
 //TODO: IMPLEMENTAR EN ENSAMBLADOR SIN USAR NOMBRES SIMB�LICOS
 unsigned short leerMuestreo( unsigned short * pista, int bitpos, int bitsPorMuestreo )
 {
+	unsigned short mask = 1;
 
+	int shortIntEsta = bitpos / 16;
+	int posicionShortInt = bitpos % 16;
+	int corrimiento = 15 - posicionShortInt;
+	mask = mask << corrimiento;
+	int resultado = numero & mask;
+
+	if (resultado == 1)
+	{
+
+	}
+	else
+	{
+
+	}
 } 
 
 /*
@@ -124,14 +139,13 @@ void unirArchivosWAVE(int numMuestreos, unsigned short *parte1, unsigned short *
 	for (int i = 0; i < numMuestreos; i++)
 	{
 		int posicion = i*bitsPorMuestreo;
-		int numero1 = leerMuestreo(*parte1, posicion, bitsPorMuestreo);
-		int numero2 = leerMuestreo(*parte2, posicion, bitsPorMuestreo);
+		unsigned short numero1 = leerMuestreo(*parte1, posicion, bitsPorMuestreo);
+		unsigned short numero2 = leerMuestreo(*parte2, posicion, bitsPorMuestreo);
 
 		int posicion2 = i * 1 * bitsPorMuestreo;
 
 		escribirMuestreo(*salida, posicion2, numero1, bitsPorMuestreo);
 		escribirMuestreo(*salida, posicion2+bitsPorMuestreo, numero2, bitsPorMuestreo);
-
 	}
 }
 
