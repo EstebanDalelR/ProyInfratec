@@ -120,7 +120,19 @@ unsigned short leerMuestreo( unsigned short * pista, int bitpos, int bitsPorMues
 //TODO: IMPLEMENTAR EN ENSAMBLADOR USANDO NOMBRES SIMB�LICOS
 void unirArchivosWAVE(int numMuestreos, unsigned short *parte1, unsigned short *parte2, unsigned short *salida, int bitsPorMuestreo )
 {
+	//Se va a hacer un recorrido para leer los muestreos de cada pista, y luego se escriben intercalados en salida
+	for (int i = 0; i < numMuestreos; i++)
+	{
+		int posicion = i*bitsPorMuestreo;
+		int numero1 = leerMuestreo(*parte1, posicion, bitsPorMuestreo);
+		int numero2 = leerMuestreo(*parte2, posicion, bitsPorMuestreo);
 
+		int posicion2 = i * 1 * bitsPorMuestreo;
+
+		escribirMuestreo(*salida, posicion2, numero1, bitsPorMuestreo);
+		escribirMuestreo(*salida, posicion2+bitsPorMuestreo, numero2, bitsPorMuestreo);
+
+	}
 }
 
 /*
