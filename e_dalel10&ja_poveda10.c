@@ -376,7 +376,10 @@ leerDatos
 //estos datos van en un registro y 
 //se van restando en cada loop
 mov   numSamples    , eax   ;         //Numero de muestreos en la pista queda en eax
-mov   bitsPerSample , ebx   ;         //Numero de bit por cada muestreo  
+mov   bitsPerSample , ebx   ;         //Numero de bit por cada muestreo
+//en cada loop de lectura se reduce 
+//eax en 1
+//por cada bit leído se reduce ebx
 
 escribirDatos
 //se escribe el stream desde la pila
