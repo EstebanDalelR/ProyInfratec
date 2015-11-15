@@ -367,8 +367,17 @@ void corregirHeader ( struct HeaderType * header ){
 
 //A partir de este punto se escribe en lenguaje ensamblador
 
-asm{
+_asm{
 leerDatos
+//se guarda es stream en pila
+//los datos se guardan en registro
+//se leeen num sample veces
+//se escriben bitsPerSample bits
+//estos datos van en un registro y 
+//se van restando en cada loop
+mov   numSamples    , eax   ;         //Numero de muestreos en la pista queda en eax
+mov   bitsPerSample , ebx   ;         //Numero de bit por cada muestreo  
 
 escribirDatos
+//se escribe el stream desde la pila
 }
