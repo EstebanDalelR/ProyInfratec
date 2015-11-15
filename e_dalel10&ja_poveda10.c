@@ -128,6 +128,9 @@ void escribirMuestreo ( unsigned short * pista, int bitpos, unsigned short muest
 //TODO: DESARROLLAR COMPLETAMENTE ESTA FUNCION
 unsigned short leerMuestreo( unsigned short * pista, int bitpos, int bitsPorMuestreo )
 {
+	double casillaBitInicio = bitpos / 16;
+	int posicionEnCasillaInicio = bitpos % 16;
+	
 	//se declaran las variables a usar
 	unsigned short respuesta[15] = 0;
 	//IMPORTANTE 
