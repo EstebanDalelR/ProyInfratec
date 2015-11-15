@@ -383,4 +383,7 @@ mov   bitsPerSample , ebx   ;         //Numero de bit por cada muestreo
 
 escribirDatos
 //se escribe el stream desde la pila
+//sucede numSamples veces
+mov   numSamples    , eax  ;         //Numero de muestreos en la pista queda en eax
+mov   bitsPerSample , ebx  ;         //Numero de bit por cada muestreo
 }
