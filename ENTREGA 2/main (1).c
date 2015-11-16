@@ -101,7 +101,12 @@ int main (int argc, char* argv[])
 //TODO: IMPLEMENTAR EN ENSAMBLADOR USANDO NOMBRES SIMB�LICOS 
 void escribirMuestreo ( unsigned short * pista, int bitpos, unsigned short muestreo, int bitsPorMuestreo )
 {
-
+	//se aprovechará la pila
+	//ya que es little endian, se escribe "al revés"
+	//se tomará de la pila para escribir en pista, desde bitpos, los valores recibidos en muestreo
+	//!!
+	//en visual estudio no es necesario ocuparse dela pila
+	//!!
 }
 
 /*
@@ -113,6 +118,9 @@ void escribirMuestreo ( unsigned short * pista, int bitpos, unsigned short muest
 //TODO: IMPLEMENTAR EN ENSAMBLADOR SIN USAR NOMBRES SIMB�LICOS
 unsigned short leerMuestreo( unsigned short * pista, int bitpos, int bitsPorMuestreo )
 {
+	//!!
+	//en visual estudio no es necesario ocuparse dela pila
+	//!!
 	unsigned short mask = 1;
 
 	int shortIntEsta = bitpos / 16;
@@ -142,6 +150,9 @@ unsigned short leerMuestreo( unsigned short * pista, int bitpos, int bitsPorMues
 //TODO: IMPLEMENTAR EN ENSAMBLADOR USANDO NOMBRES SIMB�LICOS
 void unirArchivosWAVE(int numMuestreos, unsigned short *parte1, unsigned short *parte2, unsigned short *salida, int bitsPorMuestreo )
 {
+	//!!
+	//en visual estudio no es necesario ocuparse dela pila
+	//!!
 	//Se va a hacer un recorrido para leer los muestreos de cada pista, y luego se escriben intercalados en salida
 	for (int i = 0; i < numMuestreos; i++)
 	{
@@ -183,6 +194,9 @@ int detectarBitsPorMuestreo( struct WaveData * voice ){
 */
 void copiarMuestreo(unsigned short *fuente, int *posEntrada, unsigned short *destino, int *posSalida, int bitsPorMuestreo )
 {	
+	//!!
+	//en visual estudio no es necesario ocuparse dela pila
+	//!!
 	unsigned short muestreo = leerMuestreo( fuente, *posEntrada, bitsPorMuestreo );
 	escribirMuestreo ( destino, *posSalida, muestreo, bitsPorMuestreo );
 	*posEntrada += bitsPorMuestreo;
@@ -217,6 +231,9 @@ void empaquetar ( struct WaveData *pista, int bitsPorMuestreo ){
 *  bit: vale 1 o 0, indicando cu�l es el valor que se desea asignar al bit
 */
 void escribir1bit( unsigned short * pista, int bitpos, unsigned short bit ){
+	//!!
+	//en visual estudio no es necesario ocuparse dela pila
+	//!!
 	escribirMuestreo ( pista, bitpos, bit, 1 );
 }
 
