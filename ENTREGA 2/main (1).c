@@ -105,6 +105,7 @@ void escribirMuestreo ( unsigned short * pista, int bitpos, unsigned short muest
 	// Implementación C
 	//----------------------------------------------------------------------------------
 
+
 	//----------------------------------------------------------------------------------
 	// Implementación Assembler
 	//----------------------------------------------------------------------------------
@@ -131,10 +132,6 @@ unsigned short leerMuestreo( unsigned short * pista, int bitpos, int bitsPorMues
 	//----------------------------------------------------------------------------------
 	// Implementación C
 	//----------------------------------------------------------------------------------
-
-	//!!
-	//en visual estudio no es necesario ocuparse dela pila
-	//!!
 	unsigned short mask = 1;
 
 	int shortIntEsta = bitpos / 16;
@@ -176,9 +173,6 @@ void unirArchivosWAVE(int numMuestreos, unsigned short *parte1, unsigned short *
 	// Implementación C
 	//----------------------------------------------------------------------------------
 
-	//!!
-	//en visual estudio no es necesario ocuparse dela pila
-	//!!
 	//Se va a hacer un recorrido para leer los muestreos de cada pista, y luego se escriben intercalados en salida
 	for (int i = 0; i < numMuestreos; i++)
 	{
@@ -197,7 +191,18 @@ void unirArchivosWAVE(int numMuestreos, unsigned short *parte1, unsigned short *
 	//-----------------------------------------------------------------------------------
 	_asm
 	{
-
+		push ebx
+		mov ebx, numMuestreos
+			while:
+		inc ebx
+			jge finWhile
+			sub esp, 4 //Se guarda el espacio para la variable posicion
+			mov[esp - 4], i //Se le asigna a la variable posicion 1*bitsPorMuestreo
+			imul[esp - 4], numMuestreos
+			//Por desarrollar
+		jmp while
+		finWhile:
+		pop ebx
 	}
 }
 
