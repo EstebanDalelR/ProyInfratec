@@ -191,6 +191,7 @@ void unirArchivosWAVE(int numMuestreos, unsigned short *parte1, unsigned short *
 	//-----------------------------------------------------------------------------------
 	_asm
 	{
+		//se guardan los registros a usar
 		push ebx
 		mov ebx, numMuestreos
 		while:
@@ -202,8 +203,10 @@ void unirArchivosWAVE(int numMuestreos, unsigned short *parte1, unsigned short *
 			//Por desarrollar
 			add esp, 4
 		jmp while
+
 		finWhile:
 		pop ebx
+
 	}
 }
 
@@ -234,8 +237,16 @@ int detectarBitsPorMuestreo( struct WaveData * voice ){
 */
 void copiarMuestreo(unsigned short *fuente, int *posEntrada, unsigned short *destino, int *posSalida, int bitsPorMuestreo )
 {	
+	//----------------------------------------------------------------------------------
+	// Implementación C
+	//----------------------------------------------------------------------------------
+
+
+	//----------------------------------------------------------------------------------
+	// Implementación Assembler
+	//----------------------------------------------------------------------------------
 	//!!
-	//en visual estudio no es necesario ocuparse dela pila
+	//en visual estudio no es necesario ocuparse de la pila
 	//!!
 	unsigned short muestreo = leerMuestreo( fuente, *posEntrada, bitsPorMuestreo );
 	escribirMuestreo ( destino, *posSalida, muestreo, bitsPorMuestreo );
@@ -271,6 +282,14 @@ void empaquetar ( struct WaveData *pista, int bitsPorMuestreo ){
 *  bit: vale 1 o 0, indicando cu�l es el valor que se desea asignar al bit
 */
 void escribir1bit( unsigned short * pista, int bitpos, unsigned short bit ){
+	//----------------------------------------------------------------------------------
+	// Implementación C
+	//----------------------------------------------------------------------------------
+
+	//----------------------------------------------------------------------------------
+	// Implementación Assembler
+	//----------------------------------------------------------------------------------
+
 	//!!
 	//en visual estudio no es necesario ocuparse dela pila
 	//!!
