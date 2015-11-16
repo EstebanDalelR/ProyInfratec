@@ -193,13 +193,14 @@ void unirArchivosWAVE(int numMuestreos, unsigned short *parte1, unsigned short *
 	{
 		push ebx
 		mov ebx, numMuestreos
-			while:
+		while:
 		inc ebx
-			jge finWhile
+		jge finWhile
 			sub esp, 4 //Se guarda el espacio para la variable posicion
 			mov[esp - 4], i //Se le asigna a la variable posicion 1*bitsPorMuestreo
 			imul[esp - 4], numMuestreos
 			//Por desarrollar
+			add esp, 4
 		jmp while
 		finWhile:
 		pop ebx
