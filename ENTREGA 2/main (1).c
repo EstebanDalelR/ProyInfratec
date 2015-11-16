@@ -101,12 +101,22 @@ int main (int argc, char* argv[])
 //TODO: IMPLEMENTAR EN ENSAMBLADOR USANDO NOMBRES SIMB�LICOS 
 void escribirMuestreo ( unsigned short * pista, int bitpos, unsigned short muestreo, int bitsPorMuestreo )
 {
-	//se aprovechará la pila
-	//ya que es little endian, se escribe "al revés"
-	//se tomará de la pila para escribir en pista, desde bitpos, los valores recibidos en muestreo
-	//!!
-	//en visual estudio no es necesario ocuparse dela pila
-	//!!
+	//----------------------------------------------------------------------------------
+	// Implementación C
+	//----------------------------------------------------------------------------------
+
+	//----------------------------------------------------------------------------------
+	// Implementación Assembler
+	//----------------------------------------------------------------------------------
+	_asm
+	{
+		//se aprovechará la pila
+		//ya que es little endian, se escribe "al revés"
+		//se tomará de la pila para escribir en pista, desde bitpos, los valores recibidos en muestreo
+		//!!
+		//en visual estudio no es necesario ocuparse dela pila
+		//!!
+	}
 }
 
 /*
@@ -118,6 +128,10 @@ void escribirMuestreo ( unsigned short * pista, int bitpos, unsigned short muest
 //TODO: IMPLEMENTAR EN ENSAMBLADOR SIN USAR NOMBRES SIMB�LICOS
 unsigned short leerMuestreo( unsigned short * pista, int bitpos, int bitsPorMuestreo )
 {
+	//----------------------------------------------------------------------------------
+	// Implementación C
+	//----------------------------------------------------------------------------------
+
 	//!!
 	//en visual estudio no es necesario ocuparse dela pila
 	//!!
@@ -137,6 +151,14 @@ unsigned short leerMuestreo( unsigned short * pista, int bitpos, int bitsPorMues
 	{
 
 	}
+
+	//-----------------------------------------------------------------------------------
+	// Implementación Assembler
+	//-----------------------------------------------------------------------------------
+	_asm
+	{
+
+	}
 } 
 
 /*
@@ -150,6 +172,10 @@ unsigned short leerMuestreo( unsigned short * pista, int bitpos, int bitsPorMues
 //TODO: IMPLEMENTAR EN ENSAMBLADOR USANDO NOMBRES SIMB�LICOS
 void unirArchivosWAVE(int numMuestreos, unsigned short *parte1, unsigned short *parte2, unsigned short *salida, int bitsPorMuestreo )
 {
+	//----------------------------------------------------------------------------------
+	// Implementación C
+	//----------------------------------------------------------------------------------
+
 	//!!
 	//en visual estudio no es necesario ocuparse dela pila
 	//!!
@@ -164,6 +190,14 @@ void unirArchivosWAVE(int numMuestreos, unsigned short *parte1, unsigned short *
 
 		escribirMuestreo(*salida, posicion2, numero1, bitsPorMuestreo);
 		escribirMuestreo(*salida, posicion2+bitsPorMuestreo, numero2, bitsPorMuestreo);
+	}
+
+	//-----------------------------------------------------------------------------------
+	// Implementación Assembler
+	//-----------------------------------------------------------------------------------
+	_asm
+	{
+
 	}
 }
 
