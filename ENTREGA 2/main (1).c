@@ -175,13 +175,18 @@ unsigned short leerMuestreo( unsigned short * pista, int bitpos, int bitsPorMues
 		push ebx
 		push ecx
 		push edx
+		sub esp, 8 //Se guarda el espacio para las variables posicion, numero1
 
 		//se hace push de los parámetros
+		push bitsPorMuestreo
+		push bitpos
+		push pista
 
 		//la variable de respuesta será eax
 		mov  eax , 0	   //limpia eax
-		mov  ebx , bitpos  //captura en ebx el valor de bitpos
-		lea  ecx , pista   //captura en ecx el valor de *pista (el apuntador)
+		pop  ebx		   //captura en ebx el valor de pista
+		lea  ecx , ebx     //captura en ecx el valor de *pista (el apuntador)
+		pop ebx            //captura en ebx bitpos (el número de bits a correrse)
 		add  ecx , ebx 	   //le suma al apuntador de ecx el valor de ebx para llegar a la posición a cambiar
 		mov [ecx], WORD eax//mueve a la posición apuntada por ecx el valor en eax con máscara para que llegue el valor bit a bit
 		
