@@ -236,26 +236,28 @@ void unirArchivosWAVE(int numMuestreos, unsigned short *parte1, unsigned short *
 		inc esi
 		cmp esi,  ebx  //¿esi es menor a numMuestreos?
 		jge finCiclo //Si esi es mayor o igual a numMuestreos, se sale del while
+
 			//esi es menor a numMuestreos
 			sub esp, 16 //Se guarda el espacio para las variables posicion, numero1, numero2 y posicion2
 			mov[esp - 4], esi //La variable posicion debe ser igual a i*bitsPorMuestreo
-			imul[esp - 4], numMuestreos
-			//Se meten a la pila los parámetros 
+			imul[esp - 4], bitsPorMuestreo
+			
 			call unirArchivosWAVE
-			//Se meten a la pila los parámetros
-			call unirArchivosWAVE
-			add esp,16
-			mov [ebp-4], eax
 
-			add esp, 12
+			mov[esp-16], esi  //La variable posicion2 es igual a i*2*bitsPorMuestreo
+			imul[esp-16], 2
+			imul[esp-16], bitsPorMuestreo
+			mov [ebp-4], eax
 		jmp inicioCiclo
 
 		finCiclo:
 		//Se sacan de la pila los registros utilizados
+		add esp,16
 		pop esi
 		pop edx
 		pop ecx
 		pop ebx
+		ret //Retorno
 	}
 }
 
