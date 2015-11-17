@@ -183,13 +183,20 @@ unsigned short leerMuestreo( unsigned short * pista, int bitpos, int bitsPorMues
 		push pista
 
 		//la variable de respuesta será eax
-		mov  eax , 0	   //limpia eax
+		xor  eax , eax	   //limpia eax
 		pop  ebx		   //captura en ebx el valor de pista
 		lea  ecx , ebx     //captura en ecx el valor de *pista (el apuntador)
-		pop ebx            //captura en ebx bitpos (el número de bits a correrse)
+		pop  ebx           //captura en ebx bitpos (el número de bits a correrse)
 		add  ecx , ebx 	   //le suma al apuntador de ecx el valor de ebx para llegar a la posición a cambiar
 		mov [ecx], WORD eax//mueve a la posición apuntada por ecx el valor en eax con máscara para que llegue el valor bit a bit
-		
+		pop edx			   //guarda en edx bitsPorMuestreo, el número de veces que se debe repetir la operación (hasta 32)
+
+			leerBit:
+		//este método recorre los bits y los va poniendo en eax
+		cmp  edx , 0	   //compara bitsPorMuestreo con 0 para saber si ya acabó
+		je   finLeer	   //va al final del método
+		or   eax , [ecx]   //mueve bit a bit los valores de lo apuntado por ecx a eax
+
 		//se hace pop de los registros usados
 		pop edx
 		pop ecx
