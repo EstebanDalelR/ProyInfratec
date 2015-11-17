@@ -117,18 +117,19 @@ void escribirMuestreo ( unsigned short * pista, int bitpos, unsigned short muest
 		//!!
 		//en visual estudio no es necesario ocuparse dela pila
 		//!!
+
 		//se hace push de los registros a usar
 		push eax
 		push ebx
         push ecx
 
-        mov  ah, bit		//captura en ah el valor de bit
-        mov  ebx, bitpos  //captura en ebx el valor de bitpos
-        mov  ecx, pista   //captura en ecx el valor de pista (el apuntador)
-        add  ecx, ebx 	//le suma al apuntador de ecx el valor de ebx para llegar a la posición a cambiar
-        mov[ecx], ah		//mueve a la posición apuntada por ecx el valor en ah
+        mov  ah  , bit	   //captura en ah el valor de bit
+        mov  ebx , bitpos  //captura en ebx el valor de bitpos
+        mov  ecx , pista   //captura en ecx el valor de pista (el apuntador)
+        add  ecx , ebx 	   //le suma al apuntador de ecx el valor de ebx para llegar a la posición a cambiar
+        mov [ecx], ah	   //mueve a la posición apuntada por ecx el valor en ah
 
-                            //se hace pop de los registros usados
+        //se hace pop de los registros usados
         pop ecx
         pop ebx
         pop eax
@@ -296,11 +297,11 @@ void empaquetar ( struct WaveData *pista, int bitsPorMuestreo ){
 *  bitpos: posicion del bit de la pista que se desea modificar
 *  bit: vale 1 o 0, indicando cu�l es el valor que se desea asignar al bit
 */
-void escribir1bit( unsigned short * pista, int bitpos, unsigned short bit ){
+void escribir1bit(unsigned short * pista, int bitpos, unsigned short bit) {
 	//----------------------------------------------------------------------------------
 	// Implementación C
 	//----------------------------------------------------------------------------------	
-	escribirMuestreo ( pista, bitpos, bit, 1 );
+	escribirMuestreo(pista, bitpos, bit, 1);
 	//----------------------------------------------------------------------------------
 	// Implementación Assembler
 	//----------------------------------------------------------------------------------
@@ -310,20 +311,22 @@ void escribir1bit( unsigned short * pista, int bitpos, unsigned short bit ){
 	//!!
 
 	//se hace push de los registros a usar
-	push eax
-	push ebx
-	push ecx
+	_asm {
+			push eax
+			push ebx
+			push ecx
 
-	mov  ah   , bit		//captura en ah el valor de bit
-	mov  ebx  , bitpos  //captura en ebx el valor de bitpos
-	mov  ecx  , pista   //captura en ecx el valor de pista (el apuntador)
-	add  ecx  , ebx 	//le suma al apuntador de ecx el valor de ebx para llegar a la posición a cambiar
-	mov  [ecx], ah		//mueve a la posición apuntada por ecx el valor en ah
+			mov  ah, bit		//captura en ah el valor de bit
+			mov  ebx, bitpos  //captura en ebx el valor de bitpos
+			mov  ecx, pista   //captura en ecx el valor de pista (el apuntador)
+			add  ecx, ebx 	//le suma al apuntador de ecx el valor de ebx para llegar a la posición a cambiar
+			mov[ecx], ah		//mueve a la posición apuntada por ecx el valor en ah
 
-	//se hace pop de los registros usados
-	pop ecx
-	pop ebx
-	pop eax
+			//se hace pop de los registros usados
+			pop ecx
+			pop ebx
+			pop eax
+	}
 }
 
 /*
