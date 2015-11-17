@@ -195,7 +195,9 @@ unsigned short leerMuestreo( unsigned short * pista, int bitpos, int bitsPorMues
 		//este método recorre los bits y los va poniendo en eax
 		cmp  edx , 0	   //compara bitsPorMuestreo con 0 para saber si ya acabó
 		je   finLeer	   //va al final del método
-		or   eax , [ecx]   //mueve bit a bit los valores de lo apuntado por ecx a eax
+		shr  eax , 1       //corre eax una posición
+		or   eax , [ecx]   //mueve bit a bit los valores de lo apuntado por ecx a eax con or
+		dec  edx		   //reduce en 1 edx para marcar un recorrido
 
 		//se hace pop de los registros usados
 		pop edx
