@@ -171,11 +171,9 @@ unsigned short leerMuestreo( unsigned short * pista, int bitpos, int bitsPorMues
 	_asm
 	{
 		//se hace push de los registros a usar
-		push eax
 		push ebx
 		push ecx
 		push edx
-		sub esp, 8 //Se guarda el espacio para las variables posicion, numero1
 
 		//se hace push de los parámetros
 		push bitsPorMuestreo
@@ -192,18 +190,20 @@ unsigned short leerMuestreo( unsigned short * pista, int bitpos, int bitsPorMues
 		pop edx			   //guarda en edx bitsPorMuestreo, el número de veces que se debe repetir la operación (hasta 32)
 
 			leerBit:
-		//este método recorre los bits y los va poniendo en eax
-		cmp  edx , 0	   //compara bitsPorMuestreo con 0 para saber si ya acabó
-		je   finLeer	   //va al final del método
-		shr  eax , 1       //corre eax una posición
-		or   eax , [ecx]   //mueve bit a bit los valores de lo apuntado por ecx a eax con or
-		dec  edx		   //reduce en 1 edx para marcar un recorrido
-
+			//este método recorre los bits y los va poniendo en eax
+			cmp  edx , 0	   //compara bitsPorMuestreo con 0 para saber si ya acabó
+			je   finLeer	   //va al final del método
+			shr  eax , 1       //corre eax una posición a la derecha
+			or   eax , [ecx]   //mueve bit a bit los valores de lo apuntado por ecx a eax con or
+			dec  edx		   //reduce en 1 edx para marcar un recorrido
+			jmp  leerBit       //vuelve al inicio del procedimiento
+		
+		finleer:
 		//se hace pop de los registros usados
 		pop edx
 		pop ecx
 		pop ebx
-		pop eax
+		ret     //retorna al método que llamo este procedimiento
 	}
 } 
 
