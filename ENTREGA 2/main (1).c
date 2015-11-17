@@ -243,7 +243,7 @@ void unirArchivosWAVE(int numMuestreos, unsigned short *parte1, unsigned short *
 		inc esi
 		cmp esi, numMuestreos  //¿esi es menor a numMuestreos?
 		jge finCiclo //Si esi es mayor o igual a numMuestreos, se sale del while
-			
+
 			//esi es menor a numMuestreos
 			mov ebx, [ebp + 12]   //ebx=parte1
 			mov bx, [ebx]         //bx=*parte1
@@ -268,16 +268,17 @@ void unirArchivosWAVE(int numMuestreos, unsigned short *parte1, unsigned short *
 			push cx
 			call leerMuestreo
 			add esp, 12  //Se sacan los parámetros
-			mov [ebp - 12], eax //El resultado se asigna a numero2
+			mov[ebp - 12], eax //El resultado se asigna a numero2
 
 			mov[ebp - 16], esi  //La variable posicion2 es igual a i*2*bitsPorMuestreo
 			imul[ebp - 16], 2
 			imul[ebp - 16], bitsPorMuestreo
 
 			//Se guardan los parámetros
-
+			call escribirMuestreo
 			//Se guardan los parámetros
-			
+			call escribirMuestreo
+
 			jmp inicioCiclo
 
 		finCiclo:
