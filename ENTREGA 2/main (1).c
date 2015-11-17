@@ -122,6 +122,7 @@ void escribirMuestreo ( unsigned short * pista, int bitpos, unsigned short muest
 		push eax
 		push ebx
         push ecx
+		push edx
 
         mov  ah  , bit	   //captura en ah el valor de bit
         mov  ebx , bitpos  //captura en ebx el valor de bitpos
