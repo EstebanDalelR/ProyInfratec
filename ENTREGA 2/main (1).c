@@ -284,8 +284,8 @@ void empaquetar ( struct WaveData *pista, int bitsPorMuestreo ){
 void escribir1bit( unsigned short * pista, int bitpos, unsigned short bit ){
 	//----------------------------------------------------------------------------------
 	// Implementación C
-	//----------------------------------------------------------------------------------
-
+	//----------------------------------------------------------------------------------	
+	escribirMuestreo ( pista, bitpos, bit, 1 );
 	//----------------------------------------------------------------------------------
 	// Implementación Assembler
 	//----------------------------------------------------------------------------------
@@ -293,7 +293,17 @@ void escribir1bit( unsigned short * pista, int bitpos, unsigned short bit ){
 	//!!
 	//en visual estudio no es necesario ocuparse dela pila
 	//!!
-	escribirMuestreo ( pista, bitpos, bit, 1 );
+
+	//se hace push de los registros a usar
+	push eax
+	push ebx
+	push ecx
+
+	mov  ah   , bit		//captura en ah el valor de bit
+	mov  ebx  , bitpos  //captura en ebx el valor de bitpos
+	mov  ecx  , pista   //captura en ecx el valor de pista (el apuntador)
+	add  ecx  , ebx 	//le suma al apuntador de ecx el valor de ebx para llegar a la posición a cambiar
+	mov  [ecx], ah		//mueve a la posición apuntada por ecx el valor en ah
 }
 
 /*
