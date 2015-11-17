@@ -174,6 +174,7 @@ unsigned short leerMuestreo( unsigned short * pista, int bitpos, int bitsPorMues
 		push eax
 		push ebx
 		push ecx
+		push edx
 
 		//la variable de respuesta será eax
 		mov  eax , 0	   //limpia eax
