@@ -104,8 +104,7 @@ void escribirMuestreo ( unsigned short * pista, int bitpos, unsigned short muest
 	//----------------------------------------------------------------------------------
 	// Implementación C
 	//----------------------------------------------------------------------------------
-
-
+	
 	//----------------------------------------------------------------------------------
 	// Implementación Assembler
 	//----------------------------------------------------------------------------------
@@ -177,15 +176,17 @@ unsigned short leerMuestreo( unsigned short * pista, int bitpos, int bitsPorMues
 		push ecx
 		push edx
 
+		//se hace push de los parámetros
+
 		//la variable de respuesta será eax
 		mov  eax , 0	   //limpia eax
-		mov  ah  , bit     //captura en ah el valor de bit
 		mov  ebx , bitpos  //captura en ebx el valor de bitpos
-		mov  ecx , pista   //captura en ecx el valor de pista (el apuntador)
+		lea  ecx , pista   //captura en ecx el valor de *pista (el apuntador)
 		add  ecx , ebx 	   //le suma al apuntador de ecx el valor de ebx para llegar a la posición a cambiar
-		mov [ecx], ah	   //mueve a la posición apuntada por ecx el valor en ah
-
+		mov [ecx], WORD eax//mueve a la posición apuntada por ecx el valor en eax con máscara para que llegue el valor bit a bit
+		
 		//se hace pop de los registros usados
+		pop edx
 		pop ecx
 		pop ebx
 		pop eax
