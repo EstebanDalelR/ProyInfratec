@@ -252,39 +252,51 @@ void unirArchivosWAVE(int numMuestreos, unsigned short *parte1, unsigned short *
 		jge finCiclo //Si esi es mayor o igual a numMuestreos, se sale del while
 
 			//esi es menor a numMuestreos
-			mov ebx, [ebp + 12]   //ebx=parte1
-			mov bx, [ebx]         //bx=*parte1
-			mov ecx, [ebp + 16]   //ecx=parte2
-			mov cx, [ecx]         //cx=*parte2
-			mov edx, [ebp + 20]   //edx=salida
-			mov dx, [edx]         //dx=*salida  
-			mov[ebp - 4], esi     //La variable posicion debe ser igual a i*bitsPorMuestreo
+			mov ebx, [ebp + 12]          //ebx=parte1
+			mov bx, [ebx]                //bx=*parte1
+			mov ecx, [ebp + 16]          //ecx=parte2
+			mov cx, [ecx]                //cx=*parte2
+			mov edx, [ebp + 20]          //edx=salida
+			mov dx, [edx]                //dx=*salida  
+			mov[ebp - 4], esi            //La variable posicion debe ser igual a i*bitsPorMuestreo
 			imul[ebp - 4], bitsPorMuestreo
 
 			//Se guardan los parámetros
 			push bitsPorMuestreo
-			push [ebp - 4]
+			push[ebp - 4]
 			push bx
 			call leerMuestreo
-			add esp, 12  //Se sacan los parámetros
-			mov [ebp - 8], eax //El resultado se asigna a numero1
+			add esp, 12                   //Se sacan los parámetros
+			mov[ebp - 8], eax             //El resultado se asigna a numero1
 
-			//Se guardan los parámetros
+										  //Se guardan los parámetros
 			push bitsPorMuestreo
 			push[ebp - 4]
 			push cx
 			call leerMuestreo
-			add esp, 12  //Se sacan los parámetros
-			mov[ebp - 12], eax //El resultado se asigna a numero2
+			add esp, 12                   //Se sacan los parámetros
+			mov[ebp - 12], eax            //El resultado se asigna a numero2
 
-			mov[ebp - 16], esi  //La variable posicion2 es igual a i*2*bitsPorMuestreo
+			mov[ebp - 16], esi            //La variable posicion2 es igual a i*2*bitsPorMuestreo
 			imul[ebp - 16], 2
 			imul[ebp - 16], bitsPorMuestreo
 
 			//Se guardan los parámetros
+			push bitsPorMuestreo
+			push[ebp - 8]                  //Se guarda numero1
+			push[ebp - 16]                 //Se guarda posicion2
+			push dx                        //Se guarda *salida
 			call escribirMuestreo
+			add esp, 16                    //Se sacan los parámetros 
+
 			//Se guardan los parámetros
+			push bitsPorMuestreo
+			push[ebp - 12]                  //Se guarda numero2
+			add[ebp - 16], bitsPorMuestreo  //posicion2+bitsPorMuestreo
+			push[ebp - 16]                  //Se guarda posicion2
+			push dx                         //Se guarda *salida
 			call escribirMuestreo
+			add esp, 16                     //Se sacan los parámetros
 
 			jmp inicioCiclo
 
@@ -295,7 +307,7 @@ void unirArchivosWAVE(int numMuestreos, unsigned short *parte1, unsigned short *
 		pop edx
 		pop ecx
 		pop ebx
-		ret //Retorno
+		ret
 	}
 }
 
