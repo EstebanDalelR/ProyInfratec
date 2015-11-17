@@ -117,6 +117,7 @@ void escribirMuestreo ( unsigned short * pista, int bitpos, unsigned short muest
 		//!!
 		//en visual estudio no es necesario ocuparse dela pila
 		//!!
+
 	}
 }
 
@@ -304,6 +305,11 @@ void escribir1bit( unsigned short * pista, int bitpos, unsigned short bit ){
 	mov  ecx  , pista   //captura en ecx el valor de pista (el apuntador)
 	add  ecx  , ebx 	//le suma al apuntador de ecx el valor de ebx para llegar a la posición a cambiar
 	mov  [ecx], ah		//mueve a la posición apuntada por ecx el valor en ah
+
+	//se hace pop de los registros usados
+	pop ecx
+	pop ebx
+	pop eax
 }
 
 /*
