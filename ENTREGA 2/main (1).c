@@ -227,43 +227,43 @@ void unirArchivosWAVE(int numMuestreos, unsigned short *parte1, unsigned short *
 	_asm
 	{
 		sub esp, 16 //Se guarda el espacio para las variables posicion, numero1, numero2 y posicion2
-					//Se guardan en la pila los registros que serán usados
-			push ebx
-			push ecx
-			push edx
-			push esi
+		//Se guardan en la pila los registros que serán usados
+		push ebx
+		push ecx
+		push edx
+		push esi
 
-			mov eax, 0 //Guarda la respuesta
-			inicioCiclo:
+		mov eax, 0 //Guarda la respuesta
+		inicioCiclo:
 		inc esi
-			cmp esi, numMuestreos  //¿esi es menor a numMuestreos?
-			jge finCiclo //Si esi es mayor o igual a numMuestreos, se sale del while
-
-						 //esi es menor a numMuestreos
+		cmp esi, numMuestreos  //¿esi es menor a numMuestreos?
+		jge finCiclo //Si esi es mayor o igual a numMuestreos, se sale del while
+			
+			//esi es menor a numMuestreos
 			mov ebx, [ebp + 12]   //ebx=parte1
-			mov bx, [ebx]      //bx=*parte1
-			mov ecx, [ebp + 16]  //ecx=parte2
-			mov cx, [ecx]      //cx=*parte2
-			mov edx, [ebp + 20]  //edx=salida
-			mov dx, [edx]      //dx=*salida  
-			mov[ebp - 4], esi //La variable posicion debe ser igual a i*bitsPorMuestreo
+			mov bx, [ebx]         //bx=*parte1
+			mov ecx, [ebp + 16]   //ecx=parte2
+			mov cx, [ecx]         //cx=*parte2
+			mov edx, [ebp + 20]   //edx=salida
+			mov dx, [edx]         //dx=*salida  
+			mov[ebp - 4], esi     //La variable posicion debe ser igual a i*bitsPorMuestreo
 			imul[ebp - 4], bitsPorMuestreo
 
 			//Se guardan los parámetros
 			push bitsPorMuestreo
-			push[ebp - 4]
+			push [ebp - 4]
 			push bx
 			call leerMuestreo
 			add esp, 12  //Se sacan los parámetros
-			mov[ebp - 8], eax //El resultado se asigna a numero1
+			mov [ebp - 8], eax //El resultado se asigna a numero1
 
-							  //Se guardan los parámetros
+			//Se guardan los parámetros
 			push bitsPorMuestreo
 			push[ebp - 4]
 			push cx
 			call leerMuestreo
 			add esp, 12  //Se sacan los parámetros
-			mov[ebp - 12], eax //El resultado se asigna a numero2
+			mov [ebp - 12], eax //El resultado se asigna a numero2
 
 			mov[ebp - 16], esi  //La variable posicion2 es igual a i*2*bitsPorMuestreo
 			imul[ebp - 16], 2
@@ -272,16 +272,17 @@ void unirArchivosWAVE(int numMuestreos, unsigned short *parte1, unsigned short *
 			//Se guardan los parámetros
 
 			//Se guardan los parámetros
+			
 			jmp inicioCiclo
 
-			finCiclo :
+		finCiclo:
 		//Se sacan de la pila los registros utilizados
 		add esp, 16
-			pop esi
-			pop edx
-			pop ecx
-			pop ebx
-			ret //Retorno
+		pop esi
+		pop edx
+		pop ecx
+		pop ebx
+		ret //Retorno
 	}
 }
 
