@@ -180,7 +180,7 @@ void unirArchivosWAVE(int numMuestreos, unsigned short *parte1, unsigned short *
 		unsigned short numero1 = leerMuestreo(*parte1, posicion, bitsPorMuestreo);
 		unsigned short numero2 = leerMuestreo(*parte2, posicion, bitsPorMuestreo);
 
-		int posicion2 = i * 1 * bitsPorMuestreo;
+		int posicion2 = i * 2 * bitsPorMuestreo;
 
 		escribirMuestreo(*salida, posicion2, numero1, bitsPorMuestreo);
 		escribirMuestreo(*salida, posicion2+bitsPorMuestreo, numero2, bitsPorMuestreo);
