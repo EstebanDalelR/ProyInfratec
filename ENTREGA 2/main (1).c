@@ -122,10 +122,11 @@ void escribirMuestreo ( unsigned short * pista, int bitpos, unsigned short muest
 		inicioCiclo:
 		cmp  edx , bitsPorMuestreo //compara la cantidad de ciclos con el contador
 		je   finCiclo			   //salta al final al haber dado en número de ciclos
-		mov ebx , ebp+8			   //ebx=*pista
-		add ebx , bitpos		   //lleva el apuntador a la posición desde la cual se debe escribir
-		inc edx
-		jmp inicioCiclo
+		mov  ebx , ebp+8		   //ebx=*pista
+		add  ebx , bitpos		   //lleva el apuntador a la posición desde la cual se debe escribir
+		mov [ebx], muestreo		   //escribe muestreo en lo apuntado por ebx
+		inc  edx				   //marca un avance en el loop
+		jmp  inicioCiclo		   //vuelve al principio del loop
 
 
 		finEscribir:
@@ -136,11 +137,11 @@ void escribirMuestreo ( unsigned short * pista, int bitpos, unsigned short muest
 		ret
 
 		// Lo que había:
-			mov  ah, bit	   //captura en ah el valor de bit
-			mov  ebx, bitpos  //captura en ebx el valor de bitpos
-			mov  ecx, pista   //captura en ecx el valor de pista (el apuntador)
-			add  ecx, ebx 	   //le suma al apuntador de ecx el valor de ebx para llegar a la posición a cambiar
-			mov[ecx], ah	   //mueve a la posición apuntada por ecx el valor en ah
+			//mov  ah, bit	   //captura en ah el valor de bit
+			//mov  ebx, bitpos  //captura en ebx el valor de bitpos
+			//mov  ecx, pista   //captura en ecx el valor de pista (el apuntador)
+			//add  ecx, ebx 	   //le suma al apuntador de ecx el valor de ebx para llegar a la posición a cambiar
+			//mov[ecx], ah	   //mueve a la posición apuntada por ecx el valor en ah
 	}
 }
 
