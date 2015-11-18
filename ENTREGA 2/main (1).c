@@ -135,13 +135,6 @@ void escribirMuestreo ( unsigned short * pista, int bitpos, unsigned short muest
 		pop ecx
         pop ebx
 		ret
-
-		// Lo que había:
-			//mov  ah, bit	   //captura en ah el valor de bit
-			//mov  ebx, bitpos  //captura en ebx el valor de bitpos
-			//mov  ecx, pista   //captura en ecx el valor de pista (el apuntador)
-			//add  ecx, ebx 	   //le suma al apuntador de ecx el valor de ebx para llegar a la posición a cambiar
-			//mov[ecx], ah	   //mueve a la posición apuntada por ecx el valor en ah
 	}
 }
 
@@ -179,7 +172,6 @@ unsigned short leerMuestreo( unsigned short * pista, int bitpos, int bitsPorMues
 	//-----------------------------------------------------------------------------------
 	_asm
 	{
-		
 		//se hace push de los registros a usar
 		push ebx
 		push ecx
