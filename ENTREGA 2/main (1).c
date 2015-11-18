@@ -250,68 +250,70 @@ void unirArchivosWAVE(int numMuestreos, unsigned short *parte1, unsigned short *
 	//-----------------------------------------------------------------------------------
 	_asm
 	{
-		sub esp, 16 //Se guarda el espacio para las variables posicion, numero1, numero2 y posicion2
+		//Se guarda el espacio para las variables posicion, numero1, numero2 y posicion2
+		sub  esp, 16 
 		//Se guardan en la pila los registros que serán usados
 		push ebx
 		push ecx
 		push edx
 		push esi
-        mov esi, 0
+        mov  esi, 0
+		mov  eax, 0 //Guarda la respuesta
 
-		mov eax, 0 //Guarda la respuesta
-		inicioCiclo:
-		cmp esi, numMuestreos   //¿esi es menor a numMuestreos?
-		jge finCiclo			//Si esi es mayor o igual a numMuestreos, se sale del while
+			inicioCiclo:
+
+			cmp esi, numMuestreos   //¿esi es menor a numMuestreos?
+			jge finCiclo			//Si esi es mayor o igual a numMuestreos, se sale del while
 
 			//esi es menor a numMuestreos
-			mov ebx, [ebp + 12]          //ebx=parte1
-			mov bx, [ebx]                //bx=*parte1
-			mov ecx, [ebp + 16]          //ecx=parte2
-			mov cx, [ecx]                //cx=*parte2
-			mov edx, [ebp + 20]          //edx=salida
-			mov dx, [edx]                //dx=*salida  
-			mov[ebp - 4], esi            //La variable posicion debe ser igual a i*bitsPorMuestreo
-			imul[ebp - 4], bitsPorMuestreo
+			mov  ebx      , [ebp + 12]           //ebx=parte1
+			mov  bx	 	  , [ebx]                //bx=*parte1
+			mov  ecx 	  , [ebp + 16]           //ecx=parte2
+			mov  cx	 	  , [ecx]                //cx=*parte2
+			mov  edx	  , [ebp + 20]           //edx=salida
+			mov  dx		  , [edx]                //dx=*salida  
+			mov  [ebp - 4], esi                  //La variable posicion debe ser igual a i*bitsPorMuestreo
+			imul [ebp - 4], bitsPorMuestreo
 
 			//Se guardan los parámetros
 			push bitsPorMuestreo
-			push[ebp - 4]
+			push [ebp - 4]
 			push bx
 			call leerMuestreo
-			add esp, 12                   //Se sacan los parámetros
-			mov[ebp - 8], eax             //El resultado se asigna a numero1
+			add  esp, 12                    //Se sacan los parámetros
+			mov  [ebp - 8], eax             //El resultado se asigna a numero1
 
-										  //Se guardan los parámetros
+						                    //Se guardan los parámetros
 			push bitsPorMuestreo
-			push[ebp - 4]
+			push [ebp - 4]
 			push cx
 			call leerMuestreo
-			add esp, 12                   //Se sacan los parámetros
-			mov[ebp - 12], eax            //El resultado se asigna a numero2
+			add  esp, 12                    //Se sacan los parámetros
+			mov  [ebp - 12], eax            //El resultado se asigna a numero2
 
-			mov[ebp - 16], esi            //La variable posicion2 es igual a i*2*bitsPorMuestreo
-			imul[ebp - 16], 2
-			imul[ebp - 16], bitsPorMuestreo
-
-			//Se guardan los parámetros
-			push bitsPorMuestreo
-			push[ebp - 8]                  //Se guarda numero1
-			push[ebp - 16]                 //Se guarda posicion2
-			push dx                        //Se guarda *salida
-			call escribirMuestreo
-			add esp, 16                    //Se sacan los parámetros 
+			mov  [ebp - 16], esi            //La variable posicion2 es igual a i*2*bitsPorMuestreo
+			imul [ebp - 16], 2
+			imul [ebp - 16], bitsPorMuestreo
 
 			//Se guardan los parámetros
 			push bitsPorMuestreo
-			push[ebp - 12]                  //Se guarda numero2
-			add[ebp - 16], bitsPorMuestreo  //posicion2+bitsPorMuestreo
-			push[ebp - 16]                  //Se guarda posicion2
+			push [ebp - 8]                  //Se guarda numero1
+			push [ebp - 16]                 //Se guarda posicion2
 			push dx                         //Se guarda *salida
 			call escribirMuestreo
-			add esp, 16                     //Se sacan los parámetros
+			add  esp, 16                    //Se sacan los parámetros 
 
-			inc esi
-			jmp inicioCiclo
+			//Se guardan los parámetros
+			push bitsPorMuestreo
+			push [ebp - 12]                  //Se guarda numero2
+			add  [ebp - 16], bitsPorMuestreo //posicion2+bitsPorMuestreo
+			push [ebp - 16]                  //Se guarda posicion2
+			push dx                          //Se guarda *salida
+			call escribirMuestreo
+			add  esp, 16                     //Se sacan los parámetros
+
+			inc  esi
+			jmp  inicioCiclo
 
 		finCiclo:
 		//Se sacan de la pila los registros utilizados
@@ -385,28 +387,27 @@ void empaquetar ( struct WaveData *pista, int bitsPorMuestreo ){
 *  bit: vale 1 o 0, indicando cu�l es el valor que se desea asignar al bit
 */
 void escribir1bit(unsigned short * pista, int bitpos, unsigned short bit) {
-	//----------------------------------------------------------------------------------
-	// Implementación C
-	//----------------------------------------------------------------------------------	
+
 	escribirMuestreo(pista, bitpos, bit, 1);
 	//----------------------------------------------------------------------------------
 	// Implementación Assembler
 	//----------------------------------------------------------------------------------
 	_asm {
-			push eax
-			push ebx
-			push ecx
+		//Se guardan en la pila los registros que serán usados
+		push  eax
+		push  ebx
+		push  ecx
 
-			mov  ah, bit		//captura en ah el valor de bit
-			mov  ebx, bitpos  //captura en ebx el valor de bitpos
-			mov  ecx, pista   //captura en ecx el valor de pista (el apuntador)
-			add  ecx, ebx 	//le suma al apuntador de ecx el valor de ebx para llegar a la posición a cambiar
-			mov[ecx], ah		//mueve a la posición apuntada por ecx el valor en ah
+		mov  ah  , bit	   //captura en ah el valor de bit
+		mov  ebx , bitpos  //captura en ebx el valor de bitpos
+		mov  ecx , pista   //captura en ecx el valor de pista (el apuntador)
+		add  ecx , ebx 	   //le suma al apuntador de ecx el valor de ebx para llegar a la posición a cambiar
+		mov [ecx], ah	   //mueve a la posición apuntada por ecx el valor en ah
 
-			//se hace pop de los registros usados
-			pop ecx
-			pop ebx
-			pop eax
+		//se hace pop de los registros usados
+		pop  ecx
+		pop  ebx
+		pop  eax
 	}
 }
 
