@@ -170,6 +170,7 @@ unsigned short leerMuestreo( unsigned short * pista, int bitpos, int bitsPorMues
 	//-----------------------------------------------------------------------------------
 	_asm
 	{
+		
 		//se hace push de los registros a usar
 		push ebx
 		push ecx
@@ -250,8 +251,8 @@ void unirArchivosWAVE(int numMuestreos, unsigned short *parte1, unsigned short *
 		mov eax, 0 //Guarda la respuesta
 		inicioCiclo:
 		inc esi
-		cmp esi, numMuestreos  //¿esi es menor a numMuestreos?
-		jge finCiclo //Si esi es mayor o igual a numMuestreos, se sale del while
+		cmp esi, numMuestreos   //¿esi es menor a numMuestreos?
+		jge finCiclo			//Si esi es mayor o igual a numMuestreos, se sale del while
 
 			//esi es menor a numMuestreos
 			mov ebx, [ebp + 12]          //ebx=parte1
