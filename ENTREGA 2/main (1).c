@@ -110,29 +110,35 @@ void escribirMuestreo ( unsigned short * pista, int bitpos, unsigned short muest
 	//----------------------------------------------------------------------------------
 	_asm
 	{
-		//se aprovechará la pila
-		//ya que es little endian, se escribe "al revés"
-		//se tomará de la pila para escribir en pista, desde bitpos, los valores recibidos en muestreo
-		//!!
-		//en visual estudio no es necesario ocuparse dela pila
-		//!!
-
-		//se hace push de los registros a usar
-		push eax
+		//Se hace push de los registros a usar
 		push ebx
         push ecx
 		push edx
+		push esi
+		mov esi, bitpos //esi se inicializa en bitpos porque se quiere hacer un recorrido desde ahí
 
-        mov  ah  , bit	   //captura en ah el valor de bit
-        mov  ebx , bitpos  //captura en ebx el valor de bitpos
-        mov  ecx , pista   //captura en ecx el valor de pista (el apuntador)
-        add  ecx , ebx 	   //le suma al apuntador de ecx el valor de ebx para llegar a la posición a cambiar
-        mov [ecx], ah	   //mueve a la posición apuntada por ecx el valor en ah
+		inicioCiclo:
+		cmp esi, bitsPorMuestreo
+		jge finCiclo
+			mov ebx, [ebp+8]  //ebx=pista
+			mov bx, [ebx]     //bx=*pista
+			inc esi
+			jmp inicioCiclo
 
-        //se hace pop de los registros usados
-        pop ecx
+
+		finCiclo:
+		//se hace pop de los registros usados
+        pop edx
+		pop ecx
         pop ebx
-        pop eax
+		ret
+
+		// Lo que había:
+			mov  ah, bit	   //captura en ah el valor de bit
+			mov  ebx, bitpos  //captura en ebx el valor de bitpos
+			mov  ecx, pista   //captura en ecx el valor de pista (el apuntador)
+			add  ecx, ebx 	   //le suma al apuntador de ecx el valor de ebx para llegar a la posición a cambiar
+			mov[ecx], ah	   //mueve a la posición apuntada por ecx el valor en ah
 	}
 }
 
@@ -247,10 +253,10 @@ void unirArchivosWAVE(int numMuestreos, unsigned short *parte1, unsigned short *
 		push ecx
 		push edx
 		push esi
+        mov esi, 0
 
 		mov eax, 0 //Guarda la respuesta
 		inicioCiclo:
-		inc esi
 		cmp esi, numMuestreos   //¿esi es menor a numMuestreos?
 		jge finCiclo			//Si esi es mayor o igual a numMuestreos, se sale del while
 
@@ -301,6 +307,7 @@ void unirArchivosWAVE(int numMuestreos, unsigned short *parte1, unsigned short *
 			call escribirMuestreo
 			add esp, 16                     //Se sacan los parámetros
 
+			inc esi
 			jmp inicioCiclo
 
 		finCiclo:
