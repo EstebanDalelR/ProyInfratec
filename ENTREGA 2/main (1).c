@@ -341,17 +341,6 @@ int detectarBitsPorMuestreo( struct WaveData * voice ){
 */
 void copiarMuestreo(unsigned short *fuente, int *posEntrada, unsigned short *destino, int *posSalida, int bitsPorMuestreo )
 {	
-	//----------------------------------------------------------------------------------
-	// Implementación C
-	//----------------------------------------------------------------------------------
-
-
-	//----------------------------------------------------------------------------------
-	// Implementación Assembler
-	//----------------------------------------------------------------------------------
-	//!!
-	//en visual estudio no es necesario ocuparse de la pila
-	//!!
 	unsigned short muestreo = leerMuestreo( fuente, *posEntrada, bitsPorMuestreo );
 	escribirMuestreo ( destino, *posSalida, muestreo, bitsPorMuestreo );
 	*posEntrada += bitsPorMuestreo;
@@ -393,12 +382,6 @@ void escribir1bit(unsigned short * pista, int bitpos, unsigned short bit) {
 	//----------------------------------------------------------------------------------
 	// Implementación Assembler
 	//----------------------------------------------------------------------------------
-
-	//!!
-	//en visual estudio no es necesario ocuparse dela pila
-	//!!
-
-	//se hace push de los registros a usar
 	_asm {
 			push eax
 			push ebx
