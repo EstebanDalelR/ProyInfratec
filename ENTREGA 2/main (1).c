@@ -115,18 +115,20 @@ void escribirMuestreo ( unsigned short * pista, int bitpos, unsigned short muest
         push ecx
 		push edx
 		push esi
-		mov esi, bitpos //esi se inicializa en bitpos porque se quiere hacer un recorrido desde ahí
-
+			 
+		mov  esi , bitpos //esi se inicializa en bitpos porque se quiere hacer un recorrido desde ahí
+		mov  edx , 0	  //se inicializa edx en 0 para llevar las cuentas del número de loop que debe hacer
+			 
 		inicioCiclo:
-		cmp esi, bitsPorMuestreo
-		jge finCiclo
-			mov ebx, [ebp+8]  //ebx=pista
-			mov bx, [ebx]     //bx=*pista
-			inc esi
-			jmp inicioCiclo
+		cmp  edx , bitsPorMuestreo //compara la cantidad de ciclos con el contador
+		je   finCiclo			   //salta al final al haber dado en número de ciclos
+		mov ebx , ebp+8			   //ebx=*pista
+		add ebx , bitpos		   //lleva el apuntador a la posición desde la cual se debe escribir
+		inc edx
+		jmp inicioCiclo
 
 
-		finCiclo:
+		finEscribir:
 		//se hace pop de los registros usados
         pop edx
 		pop ecx
