@@ -121,7 +121,7 @@ void escribirMuestreo ( unsigned short * pista, int bitpos, unsigned short muest
 			 
 		inicioCiclo:
 		cmp  edx , bitsPorMuestreo //compara la cantidad de ciclos con el contador
-		je   finCiclo			   //salta al final al haber dado en número de ciclos
+		je   finEscribir		   //salta al final al haber dado en número de ciclos
 		mov  ebx , ebp+8		   //ebx=*pista
 		add  ebx , bitpos		   //lleva el apuntador a la posición desde la cual se debe escribir
 		mov [ebx], muestreo		   //escribe muestreo en lo apuntado por ebx
@@ -131,7 +131,8 @@ void escribirMuestreo ( unsigned short * pista, int bitpos, unsigned short muest
 
 		finEscribir:
 		//se hace pop de los registros usados
-        pop edx
+        pop esi
+		pop edx
 		pop ecx
         pop ebx
 		ret
